@@ -5,6 +5,12 @@
 # Compiled class file
 *.class
 
+#gitignore
+.gitignore*
+
+#imp
+*.iml
+
 # Log file
 *.log
 
