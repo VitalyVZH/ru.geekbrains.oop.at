@@ -1,7 +1,6 @@
 package ru.geekbrains.java.oop.at.base;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +18,7 @@ public abstract class BaseTestSearch {
 
     @BeforeEach
 
-    public void beforeAll() throws InterruptedException {
+    public void beforeAll(){
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();

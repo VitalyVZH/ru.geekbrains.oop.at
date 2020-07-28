@@ -1,14 +1,11 @@
 package ru.geekbrains.java.oop.at;
 
-import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.java.oop.at.base.BaseTestSearch;
-
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -134,5 +131,4 @@ public class SearchTest extends BaseTestSearch {
         assertThat(gb.getText()
                 , containsString ("GeekBrains"));
     }
-
 }

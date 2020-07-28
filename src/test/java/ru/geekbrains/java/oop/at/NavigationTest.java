@@ -1,8 +1,10 @@
 package ru.geekbrains.java.oop.at;
 
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import java.util.stream.Stream;
 import ru.geekbrains.java.oop.at.base.BaseTestNavigation;
 
 
@@ -20,99 +22,92 @@ public class NavigationTest extends BaseTestNavigation {
         - Тесты
         - Карьера
     */
-    public void headerFooter() {
-        WebElement header = chromeDriver
-                .findElementById ("top-menu");
-        WebElement footer = chromeDriver
-                .findElementByCssSelector("footer[class=\"site-footer\"]");
 
-        wait15second.until(ExpectedConditions.visibilityOf(header));
-        wait15second.until(ExpectedConditions.visibilityOf(footer));
-    }
-
+    @DisplayName("Проверка загрузки страницы Вебинары")
     @Test
     public void events() {
 
-        chromeDriver.findElementByCssSelector("[class=\"svg-icon icon-webinar\"]").click();
+        driver.findElement(By.cssSelector("[class=\"svg-icon icon-webinar\"]"))
+                .click();
         Assertions.assertEquals(
                 "Вебинары",
-                chromeDriver.findElementByCssSelector("[id=\"top-menu\"] h2").getText()
+                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
         );
-
-        headerFooter();
 
     }
 
+    @DisplayName("Проверка загрузки страницы Курсы")
     @Test
     public void courses() {
 
-        chromeDriver.findElementByCssSelector("[class=\"svg-icon icon-courses\"]").click();
+        driver.findElement(By.cssSelector("[class=\"svg-icon icon-courses\"]"))
+                .click();
         Assertions.assertEquals(
                 "Курсы",
-                chromeDriver.findElementByCssSelector("[id=\"top-menu\"] h2").getText()
+                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
         );
 
         //chromeDriver.findElementByCssSelector("[class=\"gb-empopup-close\"]").click();
-        chromeDriver.findElementByCssSelector("button [class=\"svg-icon icon-popup-close-button \"]").click();
+        driver.findElement(By.cssSelector("button [class=\"svg-icon icon-popup-close-button \"]"))
+                .click();
 
-        headerFooter();
     }
 
+    @DisplayName("Проверка загрузки страницы Форум")
     @Test
     public void forum() {
 
-        chromeDriver.findElementByCssSelector("[class=\"svg-icon icon-forum\"]").click();
+        driver.findElement(By.cssSelector("[class=\"svg-icon icon-forum\"]"))
+                .click();
         Assertions.assertEquals(
                 "Форум",
-                chromeDriver.findElementByCssSelector("[id=\"top-menu\"] h2").getText()
+                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
         );
 
-        headerFooter();
     }
 
+    @DisplayName("Проверка загрузки страницы Блоги")
     @Test
     public void blogs() {
 
-        chromeDriver.findElementByCssSelector("[class=\"svg-icon icon-blog\"]").click();
+        driver.findElement(By.cssSelector("[class=\"svg-icon icon-blog\"]"))
+                .click();
         Assertions.assertEquals(
                 "Блог",
-                chromeDriver.findElementByCssSelector("[id=\"top-menu\"] h2").getText()
+                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
         );
 
-        chromeDriver.findElementByCssSelector("[class=\"gb-empopup-close\"]").click();
-        chromeDriver.findElementByCssSelector("button [class=\"svg-icon icon-popup-close-button \"]").click();
+        driver.findElement(By.cssSelector("[class=\"gb-empopup-close\"]"))
+                .click();
+        driver.findElement(By.cssSelector("button [class=\"svg-icon icon-popup-close-button \"]")).click();
 
-        headerFooter();
     }
 
+    @DisplayName("Проверка загрузки страницы Тесты")
     @Test
     public void tests() {
 
-        chromeDriver.findElementByCssSelector("[class=\"svg-icon icon-tests\"]").click();
+        driver.findElement(By.cssSelector("[class=\"svg-icon icon-tests\"]"))
+                .click();
 
         Assertions.assertEquals(
                 "Тесты",
-                chromeDriver.findElementByCssSelector("[id=\"top-menu\"] h2").getText()
+                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
         );
 
-        headerFooter();
     }
 
+    @DisplayName("Проверка загрузки страницы Карьера")
     @Test
     public void career() {
 
-        chromeDriver.findElementByCssSelector("[class=\"svg-icon icon-career\"]").click();
+        driver.findElement(By.cssSelector("[class=\"svg-icon icon-career\"]"))
+                .click();
         Assertions.assertEquals(
                 "Карьера",
-                chromeDriver.findElementByCssSelector("[id=\"top-menu\"] h2").getText()
+                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
         );
 
-        headerFooter();
     }
 
-
-    @AfterEach
-    public void afterAll(){
-        chromeDriver.quit();
-    }
 }

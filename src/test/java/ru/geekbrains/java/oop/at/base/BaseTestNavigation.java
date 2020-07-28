@@ -2,8 +2,12 @@ package ru.geekbrains.java.oop.at.base;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Arrays;
@@ -11,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTestNavigation {
 
-    public ChromeDriver chromeDriver;
+    public WebDriver driver;
     public WebDriverWait wait15second;
 
     @BeforeEach
@@ -24,22 +28,31 @@ public abstract class BaseTestNavigation {
         options.addArguments("--disable-popup-blocking");
         options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
 
-        chromeDriver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
 
-        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        chromeDriver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        chromeDriver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
 
-        chromeDriver.manage().window().maximize();
+        driver.manage().window().maximize();
 
-        chromeDriver.get("https://geekbrains.ru/events");
+        driver.get("https://geekbrains.ru/events");
 
-        wait15second = new WebDriverWait(chromeDriver, 15);
+        wait15second = new WebDriverWait(driver, 15);
 
     }
 
     @AfterEach
-    public void afterAll(){
-        chromeDriver.quit();
+    public void afterEach() {
+
+        WebElement header = driver
+                .findElement(By.id("top-menu"));
+        WebElement footer = driver
+                .findElement(By.cssSelector("footer[class=\"site-footer\"]"));
+
+        wait15second.until(ExpectedConditions.visibilityOf(header));
+        wait15second.until(ExpectedConditions.visibilityOf(footer));
+
+        driver.quit();
     }
 }
