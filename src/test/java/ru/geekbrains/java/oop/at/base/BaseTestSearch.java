@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at.base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
@@ -20,7 +21,7 @@ public abstract class BaseTestSearch {
 
     public void beforeAll(){
 
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
