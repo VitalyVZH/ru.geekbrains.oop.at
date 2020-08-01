@@ -5,9 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.java.oop.at.block.Navigation;
 
 public class ContentPage extends PageFactory {
+
+    public WebDriverWait wait15second;
+
+
 
     @FindBy(id = "top-menu")
     private WebElement header;
@@ -52,4 +57,8 @@ public class ContentPage extends PageFactory {
     public Navigation getNavigation() {
         return navigation;
     }
+
+    public WebElement getButtonClosePopUp1() { return buttonClosePopUp1; }
+
+    public WebElement getButtonClosePopUp2() { return buttonClosePopUp2; }
 }

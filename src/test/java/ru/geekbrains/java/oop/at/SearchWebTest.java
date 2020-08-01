@@ -6,12 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.java.oop.at.base.BaseTestSearch;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.geekbrains.java.oop.at.base.BaseWebTest;
+import ru.geekbrains.java.oop.at.page.SearchPage;
+
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @DisplayName("Поисковый тест")
-public class SearchWebTest extends BaseTestSearch {
+public class SearchWebTest extends BaseWebTest {
 
     /*
     Перейти на сайт https://geekbrains.ru/courses
@@ -27,6 +30,27 @@ public class SearchWebTest extends BaseTestSearch {
     Тестов не 0
     В Проектах и компаниях отображается GeekBrains
     */
+
+    @BeforeEach
+    void beforeEach() {
+
+        SearchPage searchPage = new SearchPage(driver);
+
+        //      Перейти на сайт https://geekbrains.ru/courses
+
+        driver.get("https://geekbrains.ru/courses");
+
+//        searchPage.getButtonClosePopUp1().click();
+        searchPage.getButtonClosePopUp2().click();
+
+//      В поле Поиск ввести текст: java
+
+        searchPage.getSearchBar().click();
+        searchPage.getSearchQuery().sendKeys("java");
+
+        wait15second = new WebDriverWait(driver, 15);
+
+    }
 
     @DisplayName("Проверка количества профессий")
     @Test
