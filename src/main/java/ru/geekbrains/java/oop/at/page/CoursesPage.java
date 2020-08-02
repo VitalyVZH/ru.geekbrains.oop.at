@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at.page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,6 +47,7 @@ public class CoursesPage extends PageFactory{
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Авторизация пользователем {login} с паролем {password}")
     public ContentPage authorization(String login, String password) {
 
         inputLogin.sendKeys(login);

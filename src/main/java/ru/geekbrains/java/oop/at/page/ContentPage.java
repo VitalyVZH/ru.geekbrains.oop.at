@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at.page;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

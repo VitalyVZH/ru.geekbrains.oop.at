@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at.page;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -61,6 +62,7 @@ public class SearchPage extends PageFactory {
     @FindBy(css = "button [class=\"svg-icon icon-popup-close-button \"]")
     private WebElement buttonClosePopUp2;
 
+    @Step("Авторизация пользователем {login} с паролем {password}")
     public SearchPage authorization(String login, String password) {
 
         inputLogin.sendKeys(login);

@@ -1,5 +1,7 @@
 package ru.geekbrains.java.oop.at;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +12,8 @@ import ru.geekbrains.java.oop.at.page.SearchPage;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@Feature("Поиск")
+@Story("Проверка количества контента")
 @DisplayName("Поиск")
 public class SearchWebTest extends BaseWebTest {
 
@@ -21,11 +25,9 @@ public class SearchWebTest extends BaseWebTest {
     Профессий не менее чем 2
     Курсов более 15
     Вебинаров больше чем 180, но меньше 300
-    В вебинарах отображается первым “Java Junior. Что нужно знать для успешного собеседования?”
     Блогов более 300
     Форумов не 350
     Тестов не 0
-    В Проектах и компаниях отображается GeekBrains
     */
 
 
@@ -68,7 +70,6 @@ public class SearchWebTest extends BaseWebTest {
         wait15second = new WebDriverWait(driver, 25);
 
 //        Профессий не менее чем 2
-
        assertThat(Integer.parseInt(searchPage.getCountProfessions().getText()), greaterThanOrEqualTo(2));
 
 //        Курсов более 15

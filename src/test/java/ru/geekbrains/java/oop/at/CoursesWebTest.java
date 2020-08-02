@@ -1,18 +1,16 @@
 package ru.geekbrains.java.oop.at;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.java.oop.at.base.BaseWebTest;
 import ru.geekbrains.java.oop.at.page.AuthorizationPage;
 import ru.geekbrains.java.oop.at.page.CoursesPage;
 import ru.geekbrains.java.oop.at.page.ContentPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
        /*
         1. Перейти на страницу авторизация https://geekbrains.ru/login
@@ -28,11 +26,12 @@ import static org.hamcrest.Matchers.equalTo;
         11. Проверить что в выборке отображается курсы "Тестирование ПО. Уровень 2"
         */
 
-@DisplayName("Домашнее задание 5")
+@Feature("Курсы")
+@Story("Проверка функционала страницы курсы")
+@DisplayName("Курсы")
 public class CoursesWebTest extends BaseWebTest {
 
-
-    @DisplayName("Авторизация и другие проверки")
+    @DisplayName("Проверка функционала страницы курсы")
     @Test
     public void MainTest() {
 
