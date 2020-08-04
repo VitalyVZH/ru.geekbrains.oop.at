@@ -2,20 +2,17 @@ package ru.geekbrains.java.oop.at;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.geekbrains.java.oop.at.base.BaseWebTest;
-import ru.geekbrains.java.oop.at.page.ContentPage;
-import ru.geekbrains.java.oop.at.page.SearchPage;
+import ru.geekbrains.java.oop.at.base.BeforeAndAfterStep;
+import ru.geekbrains.java.oop.at.block.SearchTabsBlock;
+import ru.geekbrains.java.oop.at.page.content.TestPage;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-@Feature("Поиск")
-@Story("Проверка количества контента")
-@DisplayName("Поиск")
-public class SearchWebTest extends BaseWebTest {
 
     /*
     Перейти на сайт https://geekbrains.ru/courses
@@ -30,70 +27,30 @@ public class SearchWebTest extends BaseWebTest {
     Тестов не 0
     */
 
+@Feature("Поиск")
+@Story("Проверка количества контента")
+@DisplayName("Поиск")
+public class SearchWebTest extends BeforeAndAfterStep {
+
+    @BeforeEach
+    void beforeSearchTest() {
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
 
     @DisplayName("Проверка количества контента")
     @Test
     void searchTest() {
 
-        SearchPage searchPage = new SearchPage(driver);
-
-        new SearchPage(driver)
-                .openUrl();
-
-        //      Авторизация на сайте
-
-        //driver.get("https://geekbrains.ru/");
-
-        String login = "hks47018@eoopy.com";
-        String password = "hks47018";
-
-        new SearchPage(driver)
-                .authorization(login, password)
-                .checkNamePage("Главная");
-
-        // Перейти на сайт https://geekbrains.ru/courses
-
-        wait15second = new WebDriverWait(driver, 15);
-        searchPage.getButtonCourses().click();
-
-        new ContentPage(driver)
-                .checkNamePage("Курсы");
-
-//        searchPage.getButtonClosePopUp1().click();
-//        searchPage.getButtonClosePopUp2().click();
-
-//      В поле Поиск ввести текст: java
-
-        searchPage.getSearchBar().click();
-        searchPage.getSearchQuery().sendKeys("java");
-
-        wait15second = new WebDriverWait(driver, 25);
-
-//        Профессий не менее чем 2
-       assertThat(Integer.parseInt(searchPage.getCountProfessions().getText()), greaterThanOrEqualTo(2));
-
-//        Курсов более 15
-
-        assertThat(Integer.parseInt(searchPage.getCountCourses().getText()), greaterThan(15));
-
-//      Вебинаров больше чем 180, но меньше 300
-
-        assertThat(Integer.parseInt(searchPage.getCountWebinars().getText()), allOf(
-                greaterThan(180),
-                lessThan(300)
-        ));
-
-//        Блогов более 300
-
-        assertThat(Integer.parseInt(searchPage.getCountBlogs().getText()), greaterThan(300));
-
-//        Форумов не 350
-
-        assertThat(Integer.parseInt(searchPage.getCountForums().getText()), not(equalTo(350)));
-
-//        Тестов не 0
-
-        assertThat(Integer.parseInt(searchPage.getCountTests().getText()), not(equalTo(0)));
-
+        new TestPage(driver)
+                .openUrl()
+                .getHeader()
+                .searchText("java")
+                .getSearchTabsBlock()
+                .checkCount(SearchTabsBlock.Tab.PROFESSIONS, greaterThanOrEqualTo(2))
+                .checkCount(SearchTabsBlock.Tab.COURSES, greaterThan(15))
+                .checkCount(SearchTabsBlock.Tab.WEBINARS, allOf(greaterThan(180), lessThan(300)))
+                .checkCount(SearchTabsBlock.Tab.BLOGS, greaterThan(300))
+                .checkCount(SearchTabsBlock.Tab.FORUMS, not(350))
+                .checkCount(SearchTabsBlock.Tab.TESTS, not(0));
     }
 }

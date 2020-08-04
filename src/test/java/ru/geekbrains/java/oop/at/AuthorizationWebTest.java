@@ -4,24 +4,23 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.geekbrains.java.oop.at.base.BaseWebTest;
-import ru.geekbrains.java.oop.at.page.AuthorizationPage;
+import ru.geekbrains.java.oop.at.base.BeforeAndAfterStep;
+import ru.geekbrains.java.oop.at.page.sign.AuthorizationPage;
 
 @Feature("Авторизация")
 @Story("Проверка авторизации на главной странице")
 @DisplayName("Авторизация")
-public class AuthorizationWebTest extends BaseWebTest {
+public class AuthorizationWebTest extends BeforeAndAfterStep {
 
     @DisplayName("Успешная авторизация с корректными данными")
     @Test
-    public void auth() {
-
-        driver.get("https://geekbrains.ru/");
+    void events() {
 
         String login = "hks47018@eoopy.com";
         String password = "hks47018";
 
         new AuthorizationPage(driver)
+                .openUrl()
                 .authorization(login, password)
                 .checkNamePage("Главная");
     }

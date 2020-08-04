@@ -11,14 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public abstract class BaseWebTest {
+public abstract class BeforeAndAfterStep {
 
     public WebDriver driver;
     public WebDriverWait wait15second;
 
     @BeforeEach
 
-    public void beforeAll() {
+    public void baseTestBeforeEach() {
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -28,14 +28,15 @@ public abstract class BaseWebTest {
 
         driver = new ChromeDriver(options);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
-
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
+        wait15second = new WebDriverWait(driver, 15);
 
     }
 
     @AfterEach
-    public void afterEach() { driver.quit(); }
+    public void BaseTestAfterEach() { driver.quit(); }
 }

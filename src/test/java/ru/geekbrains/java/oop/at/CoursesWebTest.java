@@ -1,14 +1,13 @@
 package ru.geekbrains.java.oop.at;
 
 import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.geekbrains.java.oop.at.base.BaseWebTest;
-import ru.geekbrains.java.oop.at.page.AuthorizationPage;
-import ru.geekbrains.java.oop.at.page.CoursesPage;
-import ru.geekbrains.java.oop.at.page.ContentPage;
+import ru.geekbrains.java.oop.at.base.BeforeAndAfterStep;
+import ru.geekbrains.java.oop.at.block.ContentNavigationCoursesBlock;
+import ru.geekbrains.java.oop.at.block.LeftNavigation;
+import ru.geekbrains.java.oop.at.page.content.CoursesPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -29,36 +28,26 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Feature("Курсы")
 @Story("Проверка функционала страницы курсы")
 @DisplayName("Курсы")
-public class CoursesWebTest extends BaseWebTest {
+public class CoursesWebTest extends BeforeAndAfterStep {
 
     @DisplayName("Проверка функционала страницы курсы")
     @Test
-    public void MainTest() {
+    public void CheckSignInValidLogin() {
 
-        CoursesPage coursesPage = new CoursesPage(driver);
+        CoursesPage coursesPage = ((CoursesPage)
+                new CoursesPage(driver)
+                    .openUrl()
+                    .closedPopUp()
+                    .getLeftNavigation()
+                    .clickButton(LeftNavigation.Button.COURSES)
+        );
 
-        driver.get("https://geekbrains.ru/");
-
-        String login = "hks47018@eoopy.com";
-        String password = "hks47018";
-
-        new AuthorizationPage(driver)
-                .authorization(login, password)
-                .checkNamePage("Главная");
-
-
-        coursesPage.getButtonCourses().click();
-
-        new ContentPage(driver)
-                .checkNamePage("Курсы");
-
-        coursesPage.getLinkCourses().click();
-
-        coursesPage.getBoxFree().click();
-        coursesPage.getBoxTester().click();
-
-        coursesPage.getTestingCourse1().getText().equals("Тестирование ПО. Уровень 1");
-        coursesPage.getTestingCourse2().getText().equals("Тестирование ПО. Уровень 2");
-
+        coursesPage.getContentNavigationCoursesBlock()
+                .clickTab(ContentNavigationCoursesBlock.Tab.COURSES)
+                .configFilter("Бесплатные", "Тестирование")
+                .checkingDisplayedCourses(
+                        "Тестирование ПО. Уровень 1",
+                        "Тестирование ПО. Уровень 2"
+                );
     }
 }
