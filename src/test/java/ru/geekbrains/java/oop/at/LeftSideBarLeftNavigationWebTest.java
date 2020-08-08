@@ -43,7 +43,7 @@ public class LeftSideBarLeftNavigationWebTest extends BeforeAndAfterStep {
         new TestsPage(driver)
                 .openUrl()
                 .getLeftNavigation().clickButton(button)
-                .getHeader().checkNamePage(button.getText());
+                .getHeaderBlock().checkNamePage(button.getText());
     }
 
     public static Stream<Button> stringProviderNotPopUp() {
@@ -61,7 +61,7 @@ public class LeftSideBarLeftNavigationWebTest extends BeforeAndAfterStep {
                 .openUrl()
                 .getLeftNavigation().clickButton(Button.COURSES)
                 .closedPopUp()
-                .getHeader().checkNamePage(Button.COURSES.getText());
+                .getHeaderBlock().checkNamePage(Button.COURSES.getText());
 
     }
 }

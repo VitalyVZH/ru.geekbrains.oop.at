@@ -6,9 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.java.oop.at.BasePageObject;
-import ru.geekbrains.java.oop.at.ButtonNotFoundException;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
+import ru.geekbrains.java.oop.at.utils.ButtonNotFoundException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 

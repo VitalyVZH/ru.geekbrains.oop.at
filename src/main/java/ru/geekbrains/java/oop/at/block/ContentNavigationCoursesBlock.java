@@ -4,8 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.java.oop.at.BasePageObject;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
 import ru.geekbrains.java.oop.at.page.content.CoursesPage;
 
 public class ContentNavigationCoursesBlock extends BasePageObject {
@@ -29,11 +28,11 @@ public class ContentNavigationCoursesBlock extends BasePageObject {
     @Step("Нажатие на tab: {tab}")
     public CoursesPage clickTab(Tab tab) {
         switch (tab) {
-            case PROFESSIONS: {
-                tabProfessions.click();
-            }
             case FREE_INTENSIVE: {
                 tabFreeIntensive.click();
+            }
+            case PROFESSIONS: {
+                tabProfessions.click();
             }
             case COURSES: {
                 tabCourses.click();

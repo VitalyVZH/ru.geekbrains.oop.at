@@ -1,6 +1,7 @@
 package ru.geekbrains.java.oop.at.page.content;
 
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class CoursesPage extends ContentBasePage {
 
+    @Getter
     private ContentNavigationCoursesBlock contentNavigationCoursesBlock;
 
     @FindBy(xpath = "//form/ul//label")
@@ -25,7 +27,6 @@ public class CoursesPage extends ContentBasePage {
     public CoursesPage(WebDriver driver) {
         super(driver);
         this.contentNavigationCoursesBlock = new ContentNavigationCoursesBlock(driver);
-        PageFactory.initElements(driver, this);
     }
 
     @Step("Настройка фильтра курсов: {args}")
@@ -46,7 +47,7 @@ public class CoursesPage extends ContentBasePage {
        return this;
     }
 
-    public ContentNavigationCoursesBlock getContentNavigationCoursesBlock() {
+    public ContentNavigationCoursesBlock getContentNavigationCourseBlock() {
         return contentNavigationCoursesBlock;
     }
 

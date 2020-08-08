@@ -4,8 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.java.oop.at.BasePageObject;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
 import ru.geekbrains.java.oop.at.page.content.*;
 import ru.geekbrains.java.oop.at.page.content.base.ContentBasePage;
 
@@ -71,9 +70,9 @@ public class LeftNavigation extends BasePageObject {
                  break;
 
          }
-             if (contentBasePage == null) {
-                 contentBasePage = new HomePage(driver);
-             }
+//             if (contentBasePage == null) {
+//                 contentBasePage = new HomePage(driver);
+//             }
              return contentBasePage;
      }
 
@@ -92,7 +91,7 @@ public class LeftNavigation extends BasePageObject {
                  this.text = text;
              }
 
-         public String getText() { return text; }
+        public String getText() { return text; }
      }
 
 }

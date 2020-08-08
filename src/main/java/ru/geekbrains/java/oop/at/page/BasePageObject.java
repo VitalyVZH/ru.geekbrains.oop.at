@@ -1,4 +1,4 @@
-package ru.geekbrains.java.oop.at;
+package ru.geekbrains.java.oop.at.page;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -23,9 +23,11 @@ public class BasePageObject {
     @Step("Поиск в коллекции элемента WebElement с текстом {expectedText}")
     protected WebElement findElement(List<WebElement> list, String expectedText) {
         List<String> arrayList = new ArrayList<>();
+
         for (WebElement webElement : list) {
             String actualText = webElement.getText();
             arrayList.add(actualText);
+
             if (actualText.toLowerCase().trim().equals(expectedText.toLowerCase().trim())) {
                 return webElement;
             }

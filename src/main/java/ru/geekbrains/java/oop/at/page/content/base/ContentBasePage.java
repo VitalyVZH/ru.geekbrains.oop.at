@@ -1,20 +1,21 @@
 package ru.geekbrains.java.oop.at.page.content.base;
 
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.java.oop.at.BasePageObject;
-import ru.geekbrains.java.oop.at.OpenUrl;
+import ru.geekbrains.java.oop.at.page.BasePageObject;
+import ru.geekbrains.java.oop.at.page.OpenUrl;
 import ru.geekbrains.java.oop.at.block.HeaderBlock;
 import ru.geekbrains.java.oop.at.block.LeftNavigation;
-import ru.geekbrains.java.oop.at.page.sign.AuthorizationPage;
 
 public abstract class ContentBasePage extends BasePageObject implements OpenUrl {
 
+    @Getter
     protected LeftNavigation leftNavigation;
+    @Getter
     protected HeaderBlock headerBlock;
 
     @FindBy(css = "div button svg[class=\"svg-icon icon-popup-close-button \"]")
@@ -31,13 +32,8 @@ public abstract class ContentBasePage extends BasePageObject implements OpenUrl 
         if(buttonPopUpClosed.isDisplayed()) {
             this.buttonPopUpClosed.click();
         }
-
         return this;
     }
-
-    public LeftNavigation getLeftNavigation() { return leftNavigation; }
-
-    public HeaderBlock getHeader() { return headerBlock; }
 
     public ContentBasePage checkNamePage(String exampleNamePage) {
         headerBlock.checkNamePage(exampleNamePage);

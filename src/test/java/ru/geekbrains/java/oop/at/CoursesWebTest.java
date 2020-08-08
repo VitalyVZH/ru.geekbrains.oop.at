@@ -46,6 +46,7 @@ public class CoursesWebTest extends BeforeAndAfterStep {
         );
 
         coursesPage.getContentNavigationCoursesBlock()
+                //.clickTab(ContentNavigationCoursesBlock.Tab.PROFESSIONS)
                 .clickTab(ContentNavigationCoursesBlock.Tab.COURSES)
                 .configFilter("Бесплатные", "Тестирование")
                 .checkingDisplayedCourses(
