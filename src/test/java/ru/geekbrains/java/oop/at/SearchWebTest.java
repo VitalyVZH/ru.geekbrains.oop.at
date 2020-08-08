@@ -5,14 +5,15 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import ru.geekbrains.java.oop.at.base.BeforeAndAfterStep;
 import ru.geekbrains.java.oop.at.block.SearchTabsBlock;
-import ru.geekbrains.java.oop.at.page.content.TestPage;
+import ru.geekbrains.java.oop.at.page.content.TestsPage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
 
     /*
     Перейти на сайт https://geekbrains.ru/courses
@@ -27,6 +28,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
     Тестов не 0
     */
 
+@Execution(ExecutionMode.CONCURRENT)
 @Feature("Поиск")
 @Story("Проверка количества контента")
 @DisplayName("Поиск")
@@ -41,7 +43,7 @@ public class SearchWebTest extends BeforeAndAfterStep {
     @Test
     void searchTest() {
 
-        new TestPage(driver)
+        new TestsPage(driver)
                 .openUrl()
                 .getHeader()
                 .searchText("java")

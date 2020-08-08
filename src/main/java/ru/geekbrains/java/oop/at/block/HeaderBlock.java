@@ -49,7 +49,6 @@ public class HeaderBlock extends BasePageObject {
 
     public HeaderBlock(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     @Step("Проверка имени страницы {exampleNamePage}")
@@ -61,7 +60,7 @@ public class HeaderBlock extends BasePageObject {
         return this;
     }
 
-    @Step("Поиск по тексту: {exampleNamePage}")
+    @Step("Поиск по тексту: {text}")
     public SearchPage searchText(String text) {
         buttonSearch.click();
         inputSearch.sendKeys(text);

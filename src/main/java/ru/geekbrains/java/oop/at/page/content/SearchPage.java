@@ -15,7 +15,7 @@ public class SearchPage extends ContentBasePage {
 
     @Override
     public SearchPage openUrl() {
-        driver.get("https://geekbrains.ru/search");
+        super.openUrl("https://geekbrains.ru/search");
         return this;
     }
 

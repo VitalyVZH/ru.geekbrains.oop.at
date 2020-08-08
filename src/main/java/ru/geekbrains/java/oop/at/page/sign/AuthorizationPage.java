@@ -22,7 +22,6 @@ public class AuthorizationPage extends BasePageObject implements OpenUrl {
 
     public AuthorizationPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     @Step("Авторизация пользователем {login} с паролем {password}")
@@ -37,7 +36,12 @@ public class AuthorizationPage extends BasePageObject implements OpenUrl {
 
     @Override
     public AuthorizationPage openUrl() {
-        driver.get("https://geekbrains.ru/login");
+        openUrl("https://geekbrains.ru/login");
         return this;
+    }
+
+    @Step("Переход на страницу {url}")
+    private void openUrl(String url) {
+        driver.get(url);
     }
 }

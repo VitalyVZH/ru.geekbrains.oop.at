@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.geekbrains.java.oop.at.BasePageObject;
-import ru.geekbrains.java.oop.at.page.content.CoursesPage;
-import ru.geekbrains.java.oop.at.page.content.HomePage;
+import ru.geekbrains.java.oop.at.page.content.*;
 import ru.geekbrains.java.oop.at.page.content.base.ContentBasePage;
 
 public class LeftNavigation extends BasePageObject {
@@ -35,10 +34,9 @@ public class LeftNavigation extends BasePageObject {
 
      public LeftNavigation(WebDriver driver) {
          super(driver);
-         PageFactory.initElements(driver, this);
      }
 
-     @Step("Нажатие на кнопку {nameButton}")
+     @Step("Нажатие на кнопку {button}")
      public ContentBasePage clickButton(Button button) {
          ContentBasePage contentBasePage = null;
 
@@ -53,19 +51,23 @@ public class LeftNavigation extends BasePageObject {
                  break;
              case EVENTS:
                  buttonEvents.click();
-                 //contentBasePage = new EventsPage(driver);
+                 contentBasePage = new EventsPage(driver);
                  break;
              case TOPICS:
                  buttonTopics.click();
-                 //contentBasePage = new TopicsPage(driver);
+                 contentBasePage = new TopicsPage(driver);
+                 break;
+             case POSTS:
+                 buttonTests.click();
+                 contentBasePage = new PostsPage(driver);
                  break;
              case TESTS:
                 buttonTests.click();
-                //contentBasePage = new TestsPage(driver);
+                contentBasePage = new TestsPage(driver);
                 break;
              case CAREER:
                  buttonCareer.click();
-                 //contentBasePage = new CareerPage(driver);
+                 contentBasePage = new CareerPage(driver);
                  break;
 
          }
@@ -79,7 +81,7 @@ public class LeftNavigation extends BasePageObject {
         ICON("Главная"),
         COURSES("Курсы"),
         EVENTS("Вебинары"),
-        TOPICS("Тесты"),
+        TOPICS("Форум"),
         POSTS("Блог"),
         TESTS("Тесты"),
         CAREER("Карьера");

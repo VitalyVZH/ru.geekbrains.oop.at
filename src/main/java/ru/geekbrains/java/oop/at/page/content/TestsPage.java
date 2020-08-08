@@ -1,18 +1,17 @@
 package ru.geekbrains.java.oop.at.page.content;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import ru.geekbrains.java.oop.at.page.content.base.ContentBasePage;
 
-public class HomePage extends ContentBasePage {
+public class TestsPage extends ContentBasePage {
 
-    public HomePage (WebDriver driver) {
+    public TestsPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public HomePage openUrl() {
-        super.openUrl("https://geekbrains.ru");
+    public TestsPage openUrl() {
+        super.openUrl("https://geekbrains.ru/tests");
         return this;
     }
 }

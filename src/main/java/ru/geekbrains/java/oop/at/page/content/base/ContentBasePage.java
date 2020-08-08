@@ -1,5 +1,6 @@
 package ru.geekbrains.java.oop.at.page.content.base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import ru.geekbrains.java.oop.at.BasePageObject;
 import ru.geekbrains.java.oop.at.OpenUrl;
 import ru.geekbrains.java.oop.at.block.HeaderBlock;
 import ru.geekbrains.java.oop.at.block.LeftNavigation;
+import ru.geekbrains.java.oop.at.page.sign.AuthorizationPage;
 
 public abstract class ContentBasePage extends BasePageObject implements OpenUrl {
 
@@ -22,7 +24,6 @@ public abstract class ContentBasePage extends BasePageObject implements OpenUrl 
         super(driver);
         this.headerBlock = new HeaderBlock(driver);
         this.leftNavigation = new LeftNavigation(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public ContentBasePage closedPopUp() {
@@ -30,6 +31,7 @@ public abstract class ContentBasePage extends BasePageObject implements OpenUrl 
         if(buttonPopUpClosed.isDisplayed()) {
             this.buttonPopUpClosed.click();
         }
+
         return this;
     }
 
@@ -39,6 +41,12 @@ public abstract class ContentBasePage extends BasePageObject implements OpenUrl 
 
     public ContentBasePage checkNamePage(String exampleNamePage) {
         headerBlock.checkNamePage(exampleNamePage);
+        return this;
+    }
+
+    @Step("Переход на страницу {url}")
+    public BasePageObject openUrl(String url) {
+        driver.get(url);
         return this;
     }
 }

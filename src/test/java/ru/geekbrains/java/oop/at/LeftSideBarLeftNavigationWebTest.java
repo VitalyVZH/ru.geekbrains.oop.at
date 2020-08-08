@@ -1,13 +1,16 @@
 package ru.geekbrains.java.oop.at;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.geekbrains.java.oop.at.base.BeforeAndAfterStep;
-import ru.geekbrains.java.oop.at.page.content.TestPage;
+import ru.geekbrains.java.oop.at.page.content.TestsPage;
 import static ru.geekbrains.java.oop.at.block.LeftNavigation.Button;
 
 import java.util.stream.Stream;
@@ -25,17 +28,19 @@ import java.util.stream.Stream;
         - Карьера
     */
 
+@Execution(ExecutionMode.CONCURRENT)
 @Feature("Навигация")
 @Story("Проверка левого меню навигации")
 @DisplayName("Навигация")
 public class LeftSideBarLeftNavigationWebTest extends BeforeAndAfterStep {
 
-    @DisplayName("Проверка загрузки страниц")
+    @Description("Тесты, которые проверяют функциональность без Pop-Up")
+    @DisplayName("Нажатие на элемент навигации")
     @ParameterizedTest(name = "{index} => Нажание на: {0}")
     @MethodSource("stringProviderNotPopUp")
 
     public void checkNavigationNotPopUp(Button button) {
-        new TestPage(driver)
+        new TestsPage(driver)
                 .openUrl()
                 .getLeftNavigation().clickButton(button)
                 .getHeader().checkNamePage(button.getText());
@@ -52,11 +57,11 @@ public class LeftSideBarLeftNavigationWebTest extends BeforeAndAfterStep {
 
     @Test
     public void CheckNavigationNotPopUp() {
-        new TestPage(driver)
+        new TestsPage(driver)
                 .openUrl()
-                .getLeftNavigation().clickButton(Button.POSTS)
+                .getLeftNavigation().clickButton(Button.COURSES)
                 .closedPopUp()
-                .getHeader().checkNamePage(Button.POSTS.getText());
+                .getHeader().checkNamePage(Button.COURSES.getText());
 
     }
 }

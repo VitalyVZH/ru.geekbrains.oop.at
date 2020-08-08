@@ -1,7 +1,9 @@
 package ru.geekbrains.java.oop.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -15,10 +17,12 @@ public class BasePageObject {
     public BasePageObject(WebDriver driver) {
         this.driver = driver;
         this.wait15second = new WebDriverWait(driver, 15);
+        PageFactory.initElements(driver, this);
     }
 
+    @Step("Поиск в коллекции элемента WebElement с текстом {expectedText}")
     protected WebElement findElement(List<WebElement> list, String expectedText) {
-        List<Object> arrayList = new ArrayList<>();
+        List<String> arrayList = new ArrayList<>();
         for (WebElement webElement : list) {
             String actualText = webElement.getText();
             arrayList.add(actualText);
